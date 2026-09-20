@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "Se você usar este artefato em sua pesquisa, cite-o conforme abaixo."
+title: "Tokenização de créditos em ecossistemas digitais: artefato reproduzível"
+type: software
+authors:
+  - family-names: Fernandes Cassetari
+    given-names: Lucas
+license: MIT
+repository-code: "https://github.com/LucasFernandes0101/tcc-tokenizacao-creditos"
+year: 2026
+keywords:
+  - tokenização
+  - créditos digitais
+  - decisão arquitetural
+  - reprodutibilidade
+  - SQLite
+preferred-citation:
+  type: thesis
+  title: "Tokenização de créditos em ecossistemas digitais"
+  authors:
+    - family-names: Fernandes Cassetari
+      given-names: Lucas
+  year: 2026
+  institution:
+    name: "USP/Esalq — MBA em Engenharia de Software"

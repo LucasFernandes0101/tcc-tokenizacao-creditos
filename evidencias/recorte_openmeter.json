@@ -1,0 +1,13 @@
+{
+  "commit": "6d76d8a6fa90fbbab2d41035d31df2acec7ad3af",
+  "repository": "openmeterio/openmeter",
+  "inspected_files": [
+    "openmeter/credit/engine/grant.go",
+    "openmeter/credit/engine/reset.go",
+    "openmeter/credit/grant/grant.go"
+  ],
+  "execution": "independent Python/SQLite demonstrator only",
+  "maintainer_acceptance": false,
+  "professional_deployment": false,
+  "private_organizational_data_used": false
+}

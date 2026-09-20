@@ -1,0 +1,7 @@
+﻿requisito,descricao,fonte,verificacoes,limite
+R1,"Preservar cliente, funcionalidade e concessão","OpenMeter 2026b, c","D07,D08",Chaves separadas; sem autenticação
+R2,Ordem de consumo,"OpenMeter 2026c, d","D01,D02,D03",Não exercita todas as combinações de concessões
+R3,"Vigência, expiração e anulação","OpenMeter 2026c, d","D04,D05,D06,P04,P05",Minutos lógicos; entradas cronológicas
+R4,Rollover e reset,"OpenMeter 2026b, c, d","P01-P08,B001-B075",Sem recorrência de calendário
+R5,"Distinguir saldo, uso e excedente",OpenMeter 2026b,"D10,P07,P08",Registra excedente; não implementa bloqueio financeiro
+R6,Explicar alocação de uso,"OpenMeter 2026b, c",T06,Reconstrução interna de eventos; não prova pública

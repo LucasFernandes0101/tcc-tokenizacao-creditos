@@ -1,0 +1,1259 @@
+{
+  "summary": {
+    "executed_utc": "2026-09-20T16:39:59.840787+00:00",
+    "python": "3.13.5",
+    "sqlite": "3.46.1",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+    "directed_checks": 28,
+    "boundary_checks": 75,
+    "total_checks": 103,
+    "passed": 103,
+    "failed": 0,
+    "seed": null,
+    "inputs": "Deterministic test fixtures; no production measurements",
+    "openmeter_executed": false,
+    "network_calls": false,
+    "hashes": {
+      "ledger.py": "725a1526d4f0ce7fc4087525b88c9f05c6a089642d52fd74849f63ec3a351b12",
+      "run_tests.py": "14150d34b4cc9c36b8933d76010a9e5f54c556acbd71bdaf2b8a5e5aafa61b1a"
+    }
+  },
+  "checks": [
+    {
+      "id": "D01",
+      "group": "domain",
+      "label": "Priority: monthly allowance before extra grant",
+      "expected": {
+        "allocations": {
+          "monthly": 10000,
+          "extra": 5000
+        },
+        "balance": 95000,
+        "overage": 0
+      },
+      "actual": {
+        "allocations": {
+          "monthly": 10000,
+          "extra": 5000
+        },
+        "balance": 95000,
+        "overage": 0
+      },
+      "passed": true,
+      "basis": "OpenMeter Grant + engine/grant.go, fixed commit in sources.json",
+      "error": null
+    },
+    {
+      "id": "D02",
+      "group": "domain",
+      "label": "Equal priority: earliest expiration",
+      "expected": {
+        "earlier": 50
+      },
+      "actual": {
+        "earlier": 50
+      },
+      "passed": true,
+      "basis": "OpenMeter Grant + engine/grant.go, fixed commit in sources.json",
+      "error": null
+    },
+    {
+      "id": "D03",
+      "group": "domain",
+      "label": "Equal priority and expiration: creation order",
+      "expected": {
+        "created-first": 50
+      },
+      "actual": {
+        "created-first": 50
+      },
+      "passed": true,
+      "basis": "OpenMeter Grant + engine/grant.go, fixed commit in sources.json",
+      "error": null
+    },
+    {
+      "id": "D04",
+      "group": "domain",
+      "label": "Effective-time boundary",
+      "expected": [
+        0,
+        100
+      ],
+      "actual": [
+        0,
+        100
+      ],
+      "passed": true,
+      "basis": "OpenMeter Grant + engine/grant.go, fixed commit in sources.json",
+      "error": null
+    },
+    {
+      "id": "D05",
+      "group": "domain",
+      "label": "Expiration boundary after partial use",
+      "expected": [
+        70,
+        0
+      ],
+      "actual": [
+        70,
+        0
+      ],
+      "passed": true,
+      "basis": "OpenMeter Grant + engine/grant.go, fixed commit in sources.json",
+      "error": null
+    },
+    {
+      "id": "D06",
+      "group": "domain",
+      "label": "Void: no remaining entitlement, journal reconciles",
+      "expected": [
+        0,
+        true
+      ],
+      "actual": [
+        0,
+        true
+      ],
+      "passed": true,
+      "basis": "OpenMeter Grant + engine/grant.go, fixed commit in sources.json",
+      "error": null
+    },
+    {
+      "id": "D07",
+      "group": "domain",
+      "label": "Customer isolation",
+      "expected": [
+        70,
+        200
+      ],
+      "actual": [
+        70,
+        200
+      ],
+      "passed": true,
+      "basis": "Research test design",
+      "error": null
+    },
+    {
+      "id": "D08",
+      "group": "domain",
+      "label": "Feature isolation",
+      "expected": [
+        70,
+        200
+      ],
+      "actual": [
+        70,
+        200
+      ],
+      "passed": true,
+      "basis": "Research test design",
+      "error": null
+    },
+    {
+      "id": "D09",
+      "group": "domain",
+      "label": "Zero usage is a neutral event",
+      "expected": {
+        "balance": 100,
+        "usage": 0,
+        "overage": 0,
+        "grants": {
+          "g": 100
+        }
+      },
+      "actual": {
+        "balance": 100,
+        "usage": 0,
+        "overage": 0,
+        "grants": {
+          "g": 100
+        }
+      },
+      "passed": true,
+      "basis": "Research test design",
+      "error": null
+    },
+    {
+      "id": "D10",
+      "group": "domain",
+      "label": "Overage is recorded, not hidden or rejected",
+      "expected": {
+        "balance": 0,
+        "usage": 130,
+        "overage": 30,
+        "grants": {
+          "g": 0
+        }
+      },
+      "actual": {
+        "balance": 0,
+        "usage": 130,
+        "overage": 30,
+        "grants": {
+          "g": 0
+        }
+      },
+      "passed": true,
+      "basis": "OpenMeter Entitlement (balance/usage/overage)",
+      "error": null
+    },
+    {
+      "id": "P01",
+      "group": "period",
+      "label": "Rollover: restore fixed allowance",
+      "expected": 10000,
+      "actual": 10000,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "P02",
+      "group": "period",
+      "label": "Rollover: cap remaining amount",
+      "expected": 50,
+      "actual": 50,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "P03",
+      "group": "period",
+      "label": "Rollover: guaranteed minimum",
+      "expected": 50,
+      "actual": 50,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "P04",
+      "group": "period",
+      "label": "Reset must not revive an expired grant",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "P05",
+      "group": "period",
+      "label": "Grant effective at reset belongs to new period",
+      "expected": 100,
+      "actual": 100,
+      "passed": true,
+      "basis": "OpenMeter Grant caveats",
+      "error": null
+    },
+    {
+      "id": "P06",
+      "group": "period",
+      "label": "Second reset in same minute rejected",
+      "expected": "ValueError",
+      "actual": "ValueError",
+      "passed": true,
+      "basis": "OpenMeter Entitlement reset frequency",
+      "error": null
+    },
+    {
+      "id": "P07",
+      "group": "period",
+      "label": "Preserve overage at reset",
+      "expected": {
+        "balance": 70,
+        "usage": 0,
+        "overage": 0,
+        "grants": {
+          "g": 70
+        }
+      },
+      "actual": {
+        "balance": 70,
+        "usage": 0,
+        "overage": 0,
+        "grants": {
+          "g": 70
+        }
+      },
+      "passed": true,
+      "basis": "OpenMeter Entitlement + engine/reset.go",
+      "error": null
+    },
+    {
+      "id": "P08",
+      "group": "period",
+      "label": "Forgive overage at reset",
+      "expected": {
+        "balance": 100,
+        "usage": 0,
+        "overage": 0,
+        "grants": {
+          "g": 100
+        }
+      },
+      "actual": {
+        "balance": 100,
+        "usage": 0,
+        "overage": 0,
+        "grants": {
+          "g": 100
+        }
+      },
+      "passed": true,
+      "basis": "OpenMeter Entitlement + engine/reset.go",
+      "error": null
+    },
+    {
+      "id": "T01",
+      "group": "transaction",
+      "label": "Five deliveries of one event, one debit",
+      "expected": {
+        "balance": 9300,
+        "usage": 700,
+        "duplicates": 4,
+        "committed_usage_events": 1
+      },
+      "actual": {
+        "balance": 9300,
+        "usage": 700,
+        "duplicates": 4,
+        "committed_usage_events": 1
+      },
+      "passed": true,
+      "basis": "Research design: durable source/id dedup + SQLite transaction",
+      "error": null
+    },
+    {
+      "id": "T02",
+      "group": "transaction",
+      "label": "Identity collision with changed payload rejected",
+      "expected": [
+        "ValueError",
+        70
+      ],
+      "actual": [
+        "ValueError",
+        70
+      ],
+      "passed": true,
+      "basis": "Research design: durable source/id dedup + SQLite transaction",
+      "error": null
+    },
+    {
+      "id": "T03",
+      "group": "transaction",
+      "label": "Same id from distinct sources is not duplicate",
+      "expected": 50,
+      "actual": 50,
+      "passed": true,
+      "basis": "Research design: durable source/id dedup + SQLite transaction",
+      "error": null
+    },
+    {
+      "id": "T04",
+      "group": "transaction",
+      "label": "Exception between projection update and commit",
+      "expected": {
+        "error": "RuntimeError",
+        "after_failure": [
+          10000,
+          1,
+          1
+        ],
+        "after_retry": 9300,
+        "reconciled": true
+      },
+      "actual": {
+        "error": "RuntimeError",
+        "after_failure": [
+          10000,
+          1,
+          1
+        ],
+        "after_retry": 9300,
+        "reconciled": true
+      },
+      "passed": true,
+      "basis": "Research design: durable source/id dedup + SQLite transaction",
+      "error": null
+    },
+    {
+      "id": "T05",
+      "group": "transaction",
+      "label": "Reopen database without loss of committed state",
+      "expected": {
+        "balance": 70,
+        "usage": 30,
+        "overage": 0,
+        "grants": {
+          "g": 70
+        }
+      },
+      "actual": {
+        "balance": 70,
+        "usage": 30,
+        "overage": 0,
+        "grants": {
+          "g": 70
+        }
+      },
+      "passed": true,
+      "basis": "Research design: durable source/id dedup + SQLite transaction",
+      "error": null
+    },
+    {
+      "id": "T06",
+      "group": "transaction",
+      "label": "Replay committed events and reconcile entries",
+      "expected": {
+        "same_state": true,
+        "reconciled": true,
+        "balance": 103000,
+        "events": 5
+      },
+      "actual": {
+        "same_state": true,
+        "reconciled": true,
+        "balance": 103000,
+        "events": 5
+      },
+      "passed": true,
+      "basis": "Research design: durable source/id dedup + SQLite transaction",
+      "error": null
+    },
+    {
+      "id": "T07",
+      "group": "transaction",
+      "label": "Eight local workers: 400 calls, 100 unique events",
+      "expected": {
+        "calls": 400,
+        "duplicate": 300,
+        "committed": 100,
+        "balance": 9000,
+        "usage": 1000,
+        "reconciled": true
+      },
+      "actual": {
+        "calls": 400,
+        "duplicate": 300,
+        "committed": 100,
+        "balance": 9000,
+        "usage": 1000,
+        "reconciled": true
+      },
+      "passed": true,
+      "basis": "Research design: durable source/id dedup + SQLite transaction",
+      "error": null
+    },
+    {
+      "id": "C01",
+      "group": "counterexample",
+      "label": "Identical aggregate balances hide different expiration states",
+      "expected": {
+        "equal_scalar_before": true,
+        "valid_balances_after": [
+          0,
+          100
+        ],
+        "naive_counter_after": [
+          100,
+          100
+        ]
+      },
+      "actual": {
+        "equal_scalar_before": true,
+        "valid_balances_after": [
+          0,
+          100
+        ],
+        "naive_counter_after": [
+          100,
+          100
+        ]
+      },
+      "passed": true,
+      "basis": "Original information-loss counterexample, based on grant expiration",
+      "error": null
+    },
+    {
+      "id": "V01",
+      "group": "validation",
+      "label": "Negative usage rejected without side effects",
+      "expected": [
+        "ValueError",
+        100
+      ],
+      "actual": [
+        "ValueError",
+        100
+      ],
+      "passed": true,
+      "basis": "Research test design",
+      "error": null
+    },
+    {
+      "id": "V02",
+      "group": "validation",
+      "label": "Late event explicitly rejected outside prototype scope",
+      "expected": "ValueError",
+      "actual": "ValueError",
+      "passed": true,
+      "basis": "Research test design",
+      "error": null
+    },
+    {
+      "id": "B001",
+      "group": "boundary",
+      "label": "rollover b=0 min=0 max=0",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B002",
+      "group": "boundary",
+      "label": "rollover b=0 min=0 max=1",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B003",
+      "group": "boundary",
+      "label": "rollover b=0 min=0 max=5",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B004",
+      "group": "boundary",
+      "label": "rollover b=0 min=0 max=10",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B005",
+      "group": "boundary",
+      "label": "rollover b=0 min=0 max=100",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B006",
+      "group": "boundary",
+      "label": "rollover b=0 min=1 max=1",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B007",
+      "group": "boundary",
+      "label": "rollover b=0 min=1 max=5",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B008",
+      "group": "boundary",
+      "label": "rollover b=0 min=1 max=10",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B009",
+      "group": "boundary",
+      "label": "rollover b=0 min=1 max=100",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B010",
+      "group": "boundary",
+      "label": "rollover b=0 min=5 max=5",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B011",
+      "group": "boundary",
+      "label": "rollover b=0 min=5 max=10",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B012",
+      "group": "boundary",
+      "label": "rollover b=0 min=5 max=100",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B013",
+      "group": "boundary",
+      "label": "rollover b=0 min=10 max=10",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B014",
+      "group": "boundary",
+      "label": "rollover b=0 min=10 max=100",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B015",
+      "group": "boundary",
+      "label": "rollover b=0 min=100 max=100",
+      "expected": 100,
+      "actual": 100,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B016",
+      "group": "boundary",
+      "label": "rollover b=1 min=0 max=0",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B017",
+      "group": "boundary",
+      "label": "rollover b=1 min=0 max=1",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B018",
+      "group": "boundary",
+      "label": "rollover b=1 min=0 max=5",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B019",
+      "group": "boundary",
+      "label": "rollover b=1 min=0 max=10",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B020",
+      "group": "boundary",
+      "label": "rollover b=1 min=0 max=100",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B021",
+      "group": "boundary",
+      "label": "rollover b=1 min=1 max=1",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B022",
+      "group": "boundary",
+      "label": "rollover b=1 min=1 max=5",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B023",
+      "group": "boundary",
+      "label": "rollover b=1 min=1 max=10",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B024",
+      "group": "boundary",
+      "label": "rollover b=1 min=1 max=100",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B025",
+      "group": "boundary",
+      "label": "rollover b=1 min=5 max=5",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B026",
+      "group": "boundary",
+      "label": "rollover b=1 min=5 max=10",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B027",
+      "group": "boundary",
+      "label": "rollover b=1 min=5 max=100",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B028",
+      "group": "boundary",
+      "label": "rollover b=1 min=10 max=10",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B029",
+      "group": "boundary",
+      "label": "rollover b=1 min=10 max=100",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B030",
+      "group": "boundary",
+      "label": "rollover b=1 min=100 max=100",
+      "expected": 100,
+      "actual": 100,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B031",
+      "group": "boundary",
+      "label": "rollover b=5 min=0 max=0",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B032",
+      "group": "boundary",
+      "label": "rollover b=5 min=0 max=1",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B033",
+      "group": "boundary",
+      "label": "rollover b=5 min=0 max=5",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B034",
+      "group": "boundary",
+      "label": "rollover b=5 min=0 max=10",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B035",
+      "group": "boundary",
+      "label": "rollover b=5 min=0 max=100",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B036",
+      "group": "boundary",
+      "label": "rollover b=5 min=1 max=1",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B037",
+      "group": "boundary",
+      "label": "rollover b=5 min=1 max=5",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B038",
+      "group": "boundary",
+      "label": "rollover b=5 min=1 max=10",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B039",
+      "group": "boundary",
+      "label": "rollover b=5 min=1 max=100",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B040",
+      "group": "boundary",
+      "label": "rollover b=5 min=5 max=5",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B041",
+      "group": "boundary",
+      "label": "rollover b=5 min=5 max=10",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B042",
+      "group": "boundary",
+      "label": "rollover b=5 min=5 max=100",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B043",
+      "group": "boundary",
+      "label": "rollover b=5 min=10 max=10",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B044",
+      "group": "boundary",
+      "label": "rollover b=5 min=10 max=100",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B045",
+      "group": "boundary",
+      "label": "rollover b=5 min=100 max=100",
+      "expected": 100,
+      "actual": 100,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B046",
+      "group": "boundary",
+      "label": "rollover b=10 min=0 max=0",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B047",
+      "group": "boundary",
+      "label": "rollover b=10 min=0 max=1",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B048",
+      "group": "boundary",
+      "label": "rollover b=10 min=0 max=5",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B049",
+      "group": "boundary",
+      "label": "rollover b=10 min=0 max=10",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B050",
+      "group": "boundary",
+      "label": "rollover b=10 min=0 max=100",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B051",
+      "group": "boundary",
+      "label": "rollover b=10 min=1 max=1",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B052",
+      "group": "boundary",
+      "label": "rollover b=10 min=1 max=5",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B053",
+      "group": "boundary",
+      "label": "rollover b=10 min=1 max=10",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B054",
+      "group": "boundary",
+      "label": "rollover b=10 min=1 max=100",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B055",
+      "group": "boundary",
+      "label": "rollover b=10 min=5 max=5",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B056",
+      "group": "boundary",
+      "label": "rollover b=10 min=5 max=10",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B057",
+      "group": "boundary",
+      "label": "rollover b=10 min=5 max=100",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B058",
+      "group": "boundary",
+      "label": "rollover b=10 min=10 max=10",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B059",
+      "group": "boundary",
+      "label": "rollover b=10 min=10 max=100",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B060",
+      "group": "boundary",
+      "label": "rollover b=10 min=100 max=100",
+      "expected": 100,
+      "actual": 100,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B061",
+      "group": "boundary",
+      "label": "rollover b=100 min=0 max=0",
+      "expected": 0,
+      "actual": 0,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B062",
+      "group": "boundary",
+      "label": "rollover b=100 min=0 max=1",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B063",
+      "group": "boundary",
+      "label": "rollover b=100 min=0 max=5",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B064",
+      "group": "boundary",
+      "label": "rollover b=100 min=0 max=10",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B065",
+      "group": "boundary",
+      "label": "rollover b=100 min=0 max=100",
+      "expected": 100,
+      "actual": 100,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B066",
+      "group": "boundary",
+      "label": "rollover b=100 min=1 max=1",
+      "expected": 1,
+      "actual": 1,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B067",
+      "group": "boundary",
+      "label": "rollover b=100 min=1 max=5",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B068",
+      "group": "boundary",
+      "label": "rollover b=100 min=1 max=10",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B069",
+      "group": "boundary",
+      "label": "rollover b=100 min=1 max=100",
+      "expected": 100,
+      "actual": 100,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B070",
+      "group": "boundary",
+      "label": "rollover b=100 min=5 max=5",
+      "expected": 5,
+      "actual": 5,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B071",
+      "group": "boundary",
+      "label": "rollover b=100 min=5 max=10",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B072",
+      "group": "boundary",
+      "label": "rollover b=100 min=5 max=100",
+      "expected": 100,
+      "actual": 100,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B073",
+      "group": "boundary",
+      "label": "rollover b=100 min=10 max=10",
+      "expected": 10,
+      "actual": 10,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B074",
+      "group": "boundary",
+      "label": "rollover b=100 min=10 max=100",
+      "expected": 100,
+      "actual": 100,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    },
+    {
+      "id": "B075",
+      "group": "boundary",
+      "label": "rollover b=100 min=100 max=100",
+      "expected": 100,
+      "actual": 100,
+      "passed": true,
+      "basis": "OpenMeter Grant rollover + credit/grant/grant.go",
+      "error": null
+    }
+  ]
+}
